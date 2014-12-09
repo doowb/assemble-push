@@ -29,19 +29,6 @@ describe('assemble-push', function () {
       });
   });
 
-  it('should add items to the stream by collection object', function (done) {
-    var count = 0;
-    push(assemble.views.items)
-      .on('data', function () {
-        count++;
-      })
-      .on('error', done)
-      .on('end', function () {
-        count.should.eql(4);
-        done();
-      });
-  });
-
   it('should pass items through when piped to', function (done) {
     var count = 0;
     var stream = through.obj();

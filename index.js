@@ -36,20 +36,23 @@ module.exports = function (app) {
    * });
    * ```
    * 
-   * @param  {String|Object} `collection` Either a string to lookup the collection, or the collection object itself.
+   * @param  {String} `collection` Name of the collection to push into the stream.
    * @return {Stream} Stream used in piping objects through.
    * @api public
    * @name  push
    */
   
   return function push (collection) {
+    setRenderables(collection);
+    
     var tutils = require('template-utils');
     var through = require('through2');
+
     var source = through.obj();
     var pass = through.obj();
     source.pipe(pass);
 
-    var obj = (typeof collection === 'string' ? app.views[collection] : collection) || {};
+    var obj = app.views[collection] || {};
     process.nextTick(function () {
       Object.keys(obj).forEach(function (key) {
         source.write(tutils.toVinyl(obj[key]));
@@ -58,4 +61,11 @@ module.exports = function (app) {
     });
     return pass;
   };
+
+  function setRenderables (collection) {
+    var session = app.session;
+    var renderables = session.get('renderables') || [];
+    renderables.push(collection);
+    session.set('renderables', renderables);
+  }
 };
