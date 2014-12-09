@@ -22,20 +22,34 @@ var assemblePush = require('assemble-push');
 ```
 
 ## API
-### [.assemble-push](index.js#L20)
+### [.assemble-push](index.js#L25)
+
+Return a function that will create a stream for pushing template objects onto a stream.
 
 * `app` **{Object}**: An application inherited from `template`.    
 * `returns` **{Function}**: Factory function used to build a stream.  
 
-Return a function that will create a stream for pushing template
-objects onto a stream.
+```js
+var assemble = require('assemble');
+var push = require('assemble-push')(assemble);
+```
 
-### [push](index.js#L31)
+### [push](index.js#L45)
+
+Return a stream that will push a collection of templates onto a stream.
 
 * `collection` **{String|Object}**: Either a string to lookup the collection, or the collection object itself.    
 * `returns` **{Stream}**: Stream used in piping objects through.  
 
-Return a stream that will push a collection of templates onto a stream.
+```js
+// When you have a `posts` template type,
+// push the posts into the stream to render
+assemble.task('build-posts', function () {
+  push('posts')
+    .pipe(assemble.dest('_gh_pages/posts'));
+});
+```
+
 
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/doowb/assemble-push/issues)
