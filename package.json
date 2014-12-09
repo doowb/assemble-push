@@ -1,7 +1,7 @@
 {
   "name": "assemble-push",
   "description": "Push a collection of templates into an assemble stream as vinyl objects.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/doowb/assemble-push",
   "author": {
     "name": "Brian Woodward",
