@@ -26,8 +26,13 @@
     "test": "mocha -R spec"
   },
   "devDependencies": {
+    "assemble": "git://github.com/assemble/assemble#v0.6.0",
     "mocha": "*",
     "should": "*"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "template-utils": "^0.2.0",
+    "through2": "^0.6.3"
+  }
 }

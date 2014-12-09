@@ -22,7 +22,20 @@ var assemblePush = require('assemble-push');
 ```
 
 ## API
+### [.assemble-push](index.js#L20)
 
+* `app` **{Object}**: An application inherited from `template`.    
+* `returns` **{Function}**: Factory function used to build a stream.  
+
+Return a function that will create a stream for pushing template
+objects onto a stream.
+
+### [push](index.js#L31)
+
+* `collection` **{String|Object}**: Either a string to lookup the collection, or the collection object itself.    
+* `returns` **{Stream}**: Stream used in piping objects through.  
+
+Return a stream that will push a collection of templates onto a stream.
 
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/doowb/assemble-push/issues)
